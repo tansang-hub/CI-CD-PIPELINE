@@ -1,0 +1,27 @@
+name: Shift-Right API Monitor
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Chạy mỗi giờ
+  workflow_dispatch: # Cho phép chạy thủ công (Manual trigger)
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Health Check & Response Time Monitor
+        run: |
+          newman run "MSSV_HoTen_GoRest.postman_collection.json" \
+            -e "MSSV_HoTen_GoRest.postman_environment.json" \
+            --env-var "token=${{ secrets.GOREST_TOKEN }}"
