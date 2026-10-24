@@ -1,0 +1,6 @@
+name,gender,email,status
+Nguyen Van A,male,nva_test_01@example.com,active
+Tran Thi B,female,ttb_test_02@example.com,active
+Le Van C,male,lvc_test_03@example.com,active
+Pham Thi D,female,ptd_test_04@example.com,inactive
+Hoang Van E,male,hve_test_05@example.com,active
