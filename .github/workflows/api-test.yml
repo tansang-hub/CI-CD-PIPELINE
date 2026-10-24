@@ -1,1 +1,27 @@
+name: GoRest API Automated Tests
 
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Run Postman Collection with DDT
+        run: |
+          newman run "2273404050012_NguyenTanSang_GoRest.postman_collection.json" \
+            -e "2273404050012_NguyenTanSang_GoRest_Env.postman_environment.json" \
+            -d "users.csv" \
+            --env-var "token=${{ secrets.GOREST_TOKEN }}"
