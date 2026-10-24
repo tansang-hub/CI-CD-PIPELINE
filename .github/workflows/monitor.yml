@@ -2,8 +2,8 @@ name: Shift-Right API Monitor
 
 on:
   schedule:
-    - cron: '0 * * * *' # Chạy mỗi giờ
-  workflow_dispatch: # Cho phép chạy thủ công (Manual trigger)
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
   monitor:
@@ -20,8 +20,8 @@ jobs:
       - name: Install Newman
         run: npm install -g newman
 
-      - name: Run Health Check & Response Time Monitor
+      - name: Run Health Check & Monitor
         run: |
-          newman run "MSSV_HoTen_GoRest.postman_collection.json" \
-            -e "MSSV_HoTen_GoRest.postman_environment.json" \
+          newman run "2273404050012_NguyenTanSang_GoRest.postman_collection.json" \
+            -e "2273404050012_NguyenTanSang_GoRest_Env.postman_environment.json" \
             --env-var "token=${{ secrets.GOREST_TOKEN }}"
